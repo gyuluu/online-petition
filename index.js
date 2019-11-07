@@ -35,7 +35,6 @@ app.use(function(req, res, next) {
 
 app.use((req, res, next) => {
     if (!req.session.loggedIn) {
-        //if safe route
         if (["/", "/register", "/login"].includes(req.url)) {
             next();
         } else {
@@ -46,7 +45,6 @@ app.use((req, res, next) => {
             if (req.session.userId) {
                 res.redirect("/petition/signed");
             } else {
-                console.log("Redirecting to petition");
                 res.redirect("/petition");
             }
         } else {
@@ -57,22 +55,7 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
     res.redirect("/register");
-    // would probably look like req.body.password
-    // hash("12345")
-    //     .then(hash => {
-    //         console.log("hash is: ", hash);
-    //         compare("123", hash)
-    //             .then(match => {
-    //                 console.log("did my password match?");
-    //                 console.log(match);
-    //             })
-    //             .catch(e => console.log(e));
-    //     })
-    //     .catch(e => console.log(e));
-    //hash is in registration route, compare is in login route
 });
-
-// demo route for supertesting
 
 app.get("/home", (req, res) => {
     res.send("<h1>Welcome home</h1>");
@@ -91,8 +74,6 @@ app.post("/welcome", (req, res) => {
     res.redirect("/home");
 });
 
-// end of demo route
-
 app.get("/register", (req, res) => {
     res.render("register", {
         layout: "main"
@@ -100,8 +81,6 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-    console.log("made it to the post register route");
-    console.log(req.body);
     if (req.body.password == "") {
         res.render("register", {
             error: "error",
@@ -110,21 +89,15 @@ app.post("/register", (req, res) => {
     } else {
         hash(req.body.password)
             .then(hash => {
-                console.log("hash is: ", hash);
                 db.addUser(req.body.first, req.body.last, req.body.email, hash)
                     .then(id => {
-                        console.log("The id of the signer is: ", id);
                         req.session.userId = id;
                         req.session.loggedIn = true;
                         req.session.canAddInfo = true;
-                        console.log(
-                            "The user has logged in: ",
-                            req.session.loggedIn
-                        );
                         res.redirect("/profile");
                     })
                     .catch(err => {
-                        console.log("IT didnt insert because:", err);
+                        console.log("it didnt insert because:", err);
                         res.render("register", {
                             error: "error",
                             layout: "main"
@@ -158,7 +131,6 @@ app.post("/profile", (req, res) => {
     }
     db.addBio(req.body.age, req.body.city, requrl, req.session.userId).then(
         () => {
-            //console.log("Inserting profile info result: ", result);
             req.session.canAddInfo = null;
             res.redirect("/petition");
         }
@@ -168,7 +140,6 @@ app.post("/profile", (req, res) => {
 app.get("/profile/edit", (req, res) => {
     db.getProfile(req.session.userId)
         .then(result => {
-            console.log(result);
             res.render("edit", {
                 first: result[0].first,
                 last: result[0].last,
@@ -223,7 +194,6 @@ app.post("/profile/edit", (req, res) => {
             .catch(error => {
                 console.log("Email failed: ", error);
                 db.getProfile(req.session.userId).then(result => {
-                    console.log(result);
                     res.render("edit", {
                         first: result[0].first,
                         last: result[0].last,
@@ -259,7 +229,6 @@ app.post("/profile/edit", (req, res) => {
                 .catch(error => {
                     console.log("Email failed: ", error);
                     db.getProfile(req.session.userId).then(result => {
-                        console.log(result);
                         res.render("edit", {
                             first: result[0].first,
                             last: result[0].last,
@@ -291,7 +260,6 @@ app.post("/login", (req, res) => {
                         req.session.userId = result[0].id;
                         db.getSignature(result[0].id)
                             .then(sig => {
-                                console.log("signature looks like: ", sig);
                                 req.session.signatureId = sig.rows[0].id;
                                 res.redirect("/petition/signed");
                             })
@@ -307,7 +275,6 @@ app.post("/login", (req, res) => {
                         });
                     }
 
-                    console.log(match);
                 })
                 .catch(e => {
                     console.log(e);
@@ -328,9 +295,7 @@ app.post("/login", (req, res) => {
 
 app.get("/petition", (req, res) => {
     if (req.session.loggedIn) {
-        console.log(req.session.userId);
         if (req.session.signatureId) {
-            console.log("signed petition redirect");
             res.redirect("/petition/signed");
         } else {
             res.render("welcome", {
@@ -344,30 +309,13 @@ app.get("/petition", (req, res) => {
 });
 
 app.post("/petition", (req, res) => {
-    // if (req.session.loggedIn) {
-    //     console.log(req.session.userId);
-    //     if (req.session.signatureId) {
-    //         console.log("signed petition redirect");
-    //         res.redirect("/petition/signed");
-    //     } else {
-    //         res.render("welcome", {
-    //             name: "Vlad",
-    //             layout: "main"
-    //         });
-    //     }
-    // } else {
-    //     res.redirect("/register");
-    // }
-    console.log("made it to the post route");
-    console.log(req.body);
     db.addSignature(req.body.sig, req.session.userId)
         .then(id => {
-            console.log("The id of the signer is: ", id);
             req.session.signatureId = id;
             res.redirect("/petition/signed");
         })
         .catch(err => {
-            console.log("IT didnt insert because:", err);
+            console.log("it didnt insert because:", err);
             res.render("welcome", {
                 error: "error"
             });
@@ -377,7 +325,6 @@ app.post("/petition", (req, res) => {
 app.get("/petition/signed", (req, res) => {
     db.getSignature(req.session.userId)
         .then(sig => {
-            console.log(sig);
             res.render("signed", {
                 sig: sig.rows[0].sig,
                 layout: "main"
@@ -400,11 +347,9 @@ app.get("/petition/signers", (req, res) => {
     if (!req.session.signatureId) {
         res.redirect("/petition");
     } else {
-        console.log("current session id is", req.session.userId);
         if (req.session.userId) {
             db.getSigners()
                 .then(result => {
-                    console.log("result is:", result);
                     for (let i = 0; i < result.length; i++) {
                         signers.push({
                             first: capitalize.toTitleCase(result[i].first),
@@ -428,11 +373,6 @@ app.get("/petition/signers", (req, res) => {
             res.redirect("/petition");
         }
     }
-
-    // console.log(signers);
-    // res.render("signers", {
-    //     layout: "main"
-    // });
 });
 
 app.get("/petition/signers/:city", (req, res) => {
@@ -442,7 +382,6 @@ app.get("/petition/signers/:city", (req, res) => {
     } else {
         db.getSignersByCity(req.params.city)
             .then(result => {
-                console.log("result is:", result);
                 for (let i = 0; i < result.length; i++) {
                     signerscity.push({
                         first: capitalize.toTitleCase(result[i].first),

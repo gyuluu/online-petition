@@ -13,6 +13,7 @@ The website was centered around the idea of bringing back the classic phone Noki
 
 * Sign Up
 * Log In
+* Intro text animation using TypeIt.js
 * Signing the petition - drawing manually using Canvas
 * Delete your signature
 * Edit profile information

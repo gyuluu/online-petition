@@ -1,0 +1,26 @@
+<body class="unbreakable">
+    <div class="wrapper">
+        <div class="wrapper-petition">
+            <h2>These are the supporters who signed this petition:</h2>
+            <br>
+            {{#signers}}
+                <p class='signers'>
+                    {{#if url}}
+                        <a href="{{url}}" target="_blank">{{first}} {{last}}</a>
+                    {{else}}
+                        <span class='italicize'>{{first}} {{last}}</span>
+                    {{/if}}
+
+                    {{#if age}}
+                        | <span class='italicize'>{{age}}</span>
+                    {{/if}}
+
+                    {{#if city}}
+                        | <a href='/petition/signers/{{city}}'>{{city}}</a>
+                    {{/if}}
+                </p>
+            {{/signers}}
+        </div>
+        <a href="/logout" class="logout">Log out</a>
+    </div>
+</body>

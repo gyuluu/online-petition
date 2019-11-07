@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <div class="wrapper-petition">
+        <h1 class='petition-title'></h1>
+        {{#if error}}
+            <div class="error">
+                You can not leave that field empty! Try updating the form again
+            </div>
+        {{/if}}
+        <form method="POST">
+            <label for="inp" class="inp">
+                <input id='inp' type="text" name="first" placeholder="&nbsp;" value="{{first}}">
+                <span class="label">First Name</span>
+                <span class="border"></span>
+            </label>
+            <label for="inp1" class="inp1">
+                <input id='inp1' type="text" name="last" placeholder="&nbsp;" value="{{last}}">
+                <span class="label">Last Name</span>
+                <span class="border"></span>
+            </label>
+            <label for="inp2" class="inp2">
+                <input id='inp2' type="email" name="email" placeholder="&nbsp;" value="{{email}}">
+                <span class="label">E-mail</span>
+                <span class="border"></span>
+            </label>
+            <label for="inp3" class="inp3">
+                <input id='inp3' type="password" name="password" placeholder="&nbsp;" >
+                <span class="label">Password</span>
+                <span class="border"></span>
+            </label>
+            <label for="inp4" class="inp4">
+                <input id='inp4' type="number" name='age' placeholder="&nbsp;" value="{{age}}">
+                <span class="label">Age</span>
+                <span class="border"></span>
+            </label>
+            <label for="inp5" class="inp5">
+                <input id='inp5' type="text" name="city" placeholder="&nbsp;" value="{{city}}">
+                <span class="label">City</span>
+                <span class="border"></span>
+            </label>
+            <label for="inp6" class="inp6">
+                <input id='inp6' type="text" name="url" placeholder="&nbsp;" value="{{url}}">
+                <span class="label">Homepage</span>
+                <span class="border"></span>
+            </label>
+            <input type="hidden" name="_csrf" value='{{csrfToken}}'>
+            <button>Update your profile</button>
+        </form>
+    </div>
+    <div class="nokia">
+        <img class='phone' src="/nokia.png" alt="nokia 3310">
+    </div>
+    <a href="/logout" class="logout">Log out</a>
+</div>
+<script src="/typeit.min.js"></script>
+<script src='/typewriter.js'></script>
+<script src='/paint.js'></script>

@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <div class="wrapper-petition">
+        <h1 class='petition-title'></h1>
+        {{#if error}}
+            <div class="error">
+                Please fill out the form correctly!
+            </div>
+        {{/if}}
+        <span>Let's get to know each other better! (it's optional)</span>
+        <form method="POST">
+            <label for="inp" class="inp">
+                <input id='inp' type="number" name='age' placeholder="&nbsp;">
+                <span class="label">Age</span>
+                <span class="border"></span>
+            </label>
+            <label for="inp1" class="inp1">
+                <input id='inp1' type="text" name="city" placeholder="&nbsp;">
+                <span class="label">City</span>
+                <span class="border"></span>
+            </label>
+            <label for="inp2" class="inp2">
+                <input id='inp2' type="text" name="url" placeholder="&nbsp;">
+                <span class="label">Homepage</span>
+                <span class="border"></span>
+            </label>
+            <input type="hidden" name="_csrf" value='{{csrfToken}}'>
+            <button>Continue</button>
+        </form>
+    </div>
+    <div class="nokia">
+        <img class='phone' src="/nokia.png" alt="nokia 3310">
+    </div>
+</div>
+<script src="/typeit.min.js"></script>
+<script src='/typewriter.js'></script>
+<script src='/paint.js'></script>

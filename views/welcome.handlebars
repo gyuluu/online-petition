@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <div class="wrapper-petition">
+        <h1 class='petition-title'></h1>
+        <span>Some things are tough! Almost unbreakable! Sign the petition below and bring back Snake game, Mozart 40 ringtone and two weeks for one charge. Put an end to those Facebook Groups notifications and Instagram vacation photos!</span>
+        <br><br>
+        {{#if error}}
+            <div class="error">
+                Please fill out the form correctly!
+            </div>
+        {{/if}}
+        <form method="POST">
+            <input type="hidden" name="sig" id='sig' value=''>
+            <input type="hidden" name="_csrf" value='{{csrfToken}}'>
+            <canvas id='canvas' class="js-paint paint-canvas" width="600" height="110"></canvas>
+            <div class="sign">
+                Sign Above
+            </div>
+            <button>Submit</button>
+        </form>
+    </div>
+    <div class="nokia">
+        <img class='phone' src="/nokia.png" alt="nokia 3310">
+    </div>
+    <a href="/logout" class="logout">Log out</a>
+</div>
+<script src="/typeit.min.js"></script>
+<script src='/typewriter.js'></script>
+<script src='/paint.js'></script>

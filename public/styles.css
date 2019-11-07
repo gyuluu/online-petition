@@ -1,0 +1,622 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue";
+    background-color: #3742fa;
+    display: grid;
+    font-family: Avenir;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+.petition-title {
+    font-family: "VT323", monospace;
+    font-size: 45px;
+}
+
+canvas {
+    margin-top: 20px;
+    border-bottom: 1px solid #9098a9;
+    background-color: white;
+}
+
+.error {
+    margin-top: 10px;
+    color: red;
+}
+
+.wrapper {
+    display: flex;
+    margin-top: 30px;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.wrapper-petition {
+    margin-left: 30px;
+    padding: 50px 50px 40px 50px;
+    max-width: 700px;
+    background-color: #f1f2f6;
+    border: 1px solid black;
+}
+
+button {
+    width: 150px;
+    height: 30px;
+    background-color: #3742fa;
+    color: white;
+    border: none;
+    border-radius: 2%;
+    margin-top: 20px;
+}
+
+.delete-button {
+    width: 300px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: Avenir;
+    text-align: start;
+    margin: 0;
+    /*optional*/
+    /*input has OS specific font-family*/
+    color: rgb(85, 26, 139);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.signers {
+    font-size: 20px;
+}
+
+.phone {
+    max-height: 500px;
+}
+
+.sign {
+    color: #9098a9;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.logout {
+    color: black;
+    background-color: white;
+    font-weight: bold;
+    padding: 5px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    text-decoration: none;
+    border: 1px solid black;
+}
+
+.logout:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.italicize {
+    font-style: italic;
+}
+
+body.unbreakable {
+    background-image: url("/unbreakable.png");
+    background-repeat: repeat-y repeat-x;
+    background-color: #dff9fb;
+    background-size: 75px 75px;
+}
+
+.signed {
+    border: 1px solid black;
+}
+
+.inp {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+.inp .label {
+    width: 200px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+    margin-top: 20px;
+}
+.inp input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+.inp input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp input:focus {
+    background: none;
+    outline: none;
+}
+.inp input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp input:focus + span + .border {
+    transform: scaleX(1);
+}
+
+.inp1 {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+.inp1 .label {
+    width: 200px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp1 .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp1 input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+    margin-top: 20px;
+}
+.inp1 input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+.inp1 input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp1 input:focus {
+    background: none;
+    outline: none;
+}
+.inp1 input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp1 input:focus + span + .border {
+    transform: scaleX(1);
+}
+
+.inp2 {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+.inp2 .label {
+    width: 200px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp2 .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp2 input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+    margin-top: 20px;
+}
+.inp2 input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+.inp2 input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp2 input:focus {
+    background: none;
+    outline: none;
+}
+.inp2 input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp2 input:focus + span + .border {
+    transform: scaleX(1);
+}
+
+.inp3 {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+.inp3 .label {
+    width: 200px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp3 .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp3 input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+    margin-top: 20px;
+}
+.inp3 input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+.inp3 input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp3 input:focus {
+    background: none;
+    outline: none;
+}
+.inp3 input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp3 input:focus + span + .border {
+    transform: scaleX(1);
+}
+
+.inp4 {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+.inp4 .label {
+    width: 200px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp4 .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp4 input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+    margin-top: 20px;
+}
+.inp4 input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+.inp4 input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp4 input:focus {
+    background: none;
+    outline: none;
+}
+.inp4 input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp4 input:focus + span + .border {
+    transform: scaleX(1);
+}
+
+.inp5 {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+.inp5 .label {
+    width: 200px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp5 .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp5 input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+    margin-top: 20px;
+}
+.inp5 input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+.inp5 input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp5 input:focus {
+    background: none;
+    outline: none;
+}
+.inp5 input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp5 input:focus + span + .border {
+    transform: scaleX(1);
+}
+
+.inp6 {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+.inp6 .label {
+    width: 200px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp6 .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp6 input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+    margin-top: 20px;
+}
+.inp6 input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+.inp6 input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp6 input:focus {
+    background: none;
+    outline: none;
+}
+.inp6 input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp6 input:focus + span + .border {
+    transform: scaleX(1);
+}
+
+.inp7 {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+.inp7 .label {
+    width: 200px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+.inp7 .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+.inp7 input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+    margin-top: 20px;
+}
+.inp7 input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+.inp7 input:not(:placeholder-shown) + span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp7 input:focus {
+    background: none;
+    outline: none;
+}
+.inp7 input:focus + span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+.inp7 input:focus + span + .border {
+    transform: scaleX(1);
+}

@@ -1,0 +1,19 @@
+<body class='unbreakable'>
+<div class="wrapper">
+    <div class="wrapper-petition">
+        <h1>Thanks for signing our petition. You understand the importance of this issue.</h1><br>
+        <img class='signed' src='{{sig}}'>
+        <a href='/petition/signers'><h2>See a list of all the signers</h2></a>
+        <a href='/profile/edit'><h2>Edit your profile</h2></a>
+        <form method="POST">
+            <button class="delete-button">Delete your signature</button>
+            <input type="hidden" name="_csrf" value='{{csrfToken}}'>
+        </form>
+        <br><br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/o69LMa0UUDI" frameborder="0" allow="accelerometer; autoplay="on"; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    </div>
+
+    <a href="/logout" class="logout">Log out</a>
+</div>
+</body>
